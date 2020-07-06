@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Assignment 5</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link type="text/css" rel="stylesheet" href="style.css"> -->
+  <script type="text/javascript" src="js/index.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+  <!-- <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script> -->
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+<body>
+
+  <div class="jumbotron text-center">
+    <img src="img/aws.jpg" style="width:100px;height:100px;">
+    <p>Name: KOWSIK REDDY TUMMURI</p>
+    <p>Student ID: 1001832384</p>
+  </div>
+
+  <div class="content">
+    <h2>Search</h2>
+    <h3 id='seconds-counter'> </h3>
+        <script>
+            var seconds = 0;
+            var el = document.getElementById('seconds-counter');
+    
+            function incrementSeconds() {
+                seconds += 1;
+                el.innerText = "Counter " + seconds + " seconds.";
+            }
+            
+            var cancel = setInterval(incrementSeconds, 1000);
+           
+        </script>
+
+  <div class="container-fluid">
+    <div class="row">
+      <form class="form-inline" name="getIP" action="/index" onsubmit="return getIPf()" method="GET">
+        <button type="submit" class="btn btn-default col-lg-1">Get IP Address</button>
+      </form>
+      
+      <div class="col-lg-11" id="IP"></div>
+    </div>
+  </div>
+<br>
+    <form class="form-inline" name="form1" action="/index" onsubmit="return form1f()" method="post">
+        <div class="form-group">
+            <label  for="a1">Enter Country Code :</label>
+            <input class="form-control" placeholder="Enter Country Code" type="text" id="a1" name="a1" required>
+          </div> 
+        <!-- <div class="form-group">
+          <label  for="a1">Enter YEAR 1 :</label>
+          <input class="form-control" placeholder="Enter YEAR 1" type="text" id="a1" name="a1" required>
+        </div> 
+        <div class="form-group">
+          <label  for="a2">Enter YEAR 2:</label>
+          <input class="form-control" placeholder="Enter YEAR 2" type="text" id="a2" name="a2" required>
+        </div>
+        <div class="form-group">
+          <label  for="a3">Enter Country Name:</label>
+          <input class="form-control" placeholder="Enter Country Name:" type="text" id="a3" name="a3" required>
+        </div>   -->
+          
+        <button type="submit" class="btn btn-default">Search Query</button>
+    </form>
+  <br>
+
+  <form class="form-inline" name="form2" action="/index" onsubmit="return form2f()" method="post">
+    
+    <div class="form-group">
+      <label  for="a1">Enter YEAR 1 :</label>
+      <input class="form-control" placeholder="Enter YEAR 1" type="text" id="a1" name="a1" required>
+    </div> 
+    <div class="form-group">
+      <label  for="a2">Enter YEAR 2:</label>
+      <input class="form-control" placeholder="Enter YEAR 2" type="text" id="a2" name="a2" required>
+    </div>           
+    <button type="submit" class="btn btn-default">Search Query</button>
+
+  </form>
+<br>
+
+<form class="form-inline" name="form3" action="/index" onsubmit="return form3f()" method="post">
+   
+  <div class="form-group">
+    <label  for="a1">Enter YEAR 1 :</label>
+    <input class="form-control" placeholder="Enter YEAR 1" type="text" id="a1" name="a1" required>
+  </div> 
+  <div class="form-group">
+    <label  for="a2">Enter YEAR 2:</label>
+    <input class="form-control" placeholder="Enter YEAR 2" type="text" id="a2" name="a2" required>
+  </div>
+  <div class="form-group">
+    <label  for="a3">Enter Country Name:</label>
+    <input class="form-control" placeholder="Enter Country Name:" type="text" id="a3" name="a3" required>
+  </div>  
+    
+  <button type="submit" class="btn btn-default">Search Query</button>
+</form>
+<br>
+
+    <div id="forChart">
+
+    </div>    
+
+    <!--********* Highlight*****************-->
+    <figure class="highcharts-figure">
+      <div id="highChart"></div>
+      <p class="highcharts-description">
+      </p>
+    </figure>
+
+    <table style="width:100%" class="table">
+      <tr>
+        <td>
+          <div id="myData">  </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="container">
+      <table style="width:100%" class="table table-bordered" id="showData">
+        
+      </table>
+    </div>
+  
+  </div>
+
+</body>
+</html>

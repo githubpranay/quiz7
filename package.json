@@ -1,0 +1,24 @@
+{
+  "name": "Node-Website-EC2-Sample-App",
+  "description": "Sample NodeJs web application",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "mocha": "5.0.0",
+    "unit.js": "2.1.1",
+    "supertest": "3.0.0"
+  },
+  "scripts": {
+    "test": "mocha --recursive tests --exit",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "forever": "2.0.0",
+    "router": "^1.3.5",
+    "superagent": "^5.3.1",
+    "tedious": "^8.3.0"
+  }
+}
