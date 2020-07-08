@@ -56,7 +56,7 @@ function freq_file() {
   // var a3 = document.forms["form1"]["a3"].value;
     fetch('/most_frequent', 
     {
-      method: 'POST',
+      method: 'GET',
       headers: {'Content-Type': 'application/json'},
       //body: JSON.stringify({a1: a1})
     })
