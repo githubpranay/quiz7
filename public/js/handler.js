@@ -86,7 +86,7 @@ findInFiles.findSync(inputName, '.', 'PrideandPrejudice.txt')
 
 
 //code to count each word in a file
-Router.get("/most_frequent", (req,resp)=>{ 
+Router.post("/frequent", (req,resp)=>{ 
     // read file from current directory
     fs.readFile(__dirname+'/../img/numberOfTimes.txt', 'utf8', function (err, data) {
       if (err) throw err;
