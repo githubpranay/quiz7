@@ -4,121 +4,62 @@
   <title>Quiz 5</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link type="text/css" rel="stylesheet" href="style.css"> -->
+  <link type="text/css" rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="js/index.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
-  <!-- <script src="https://d3js.org/d3.v3.min.js"></script>
-  <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script> -->
-
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </head>
 <body>
 
-  <div class="jumbotron text-center">
-    <p>Student ID: 2769</p>
-    <p>Name: Imtiyaz Aaresh Shaik</p>
+  <div class="header">
+    <h1>1001832769</h1>
+    <h1>Imtiyaz Aaresh Shaik</h1>
   </div>
+   <img src="img/aws.jpg" style="width:100px;height:100px;">
 
-  <div class="content">
-    <h2>Search</h2>
-    <h3 id='seconds-counter'> </h3>
-        <script>
-            var seconds = 0;
-            var el = document.getElementById('seconds-counter');
-    
-            function incrementSeconds() {
-                seconds += 1;
-                el.innerText = "Counter " + seconds + " seconds.";
-            }
-            
-            var cancel = setInterval(incrementSeconds, 1000);
-           
-        </script>
 
-  <div class="container-fluid">
-    <div class="row">
-      <form class="form-inline" name="getIP" action="/index" onsubmit="return getIPf()" method="GET">
-        <button type="submit" class="btn btn-default col-lg-1">Get IP Address</button>
-      </form>
-      <br>
-      
-      <div class="col-lg-11" id="IP"></div>
-    </div>
-  </div>
-  <img src="img/aws.jpg" style="width:100px;height:100px;">
-  <br>
-
+<!-- ---------------------------------------previous---------------------------------------------------- -->
+  <div class="mb-10">
+    <h4>Get data from Table : </h4>
   <form class="form-inline" name="form2" action="/index" onsubmit="return form2f()" method="post">
-    
-    <div class="form-group">
-      <label  for="a1">Enter YEAR 1 :</label>
-      <input class="form-control" placeholder="Enter YEAR 1" type="text" id="a1" name="a1" required>
-    </div> 
-    <div class="form-group">
-      <label  for="a2">Enter YEAR 2:</label>
-      <input class="form-control" placeholder="Enter YEAR 2" type="text" id="a2" name="a2" required>
-    </div>           
+      <label  for="a1">Enter Year 1 :</label>
+      <input placeholder="Enter YEAR 1" type="text" id="a1" name="a1" required>
+      <label  for="a2">Enter Year 2:</label>
+      <input placeholder="Enter YEAR 2" type="text" id="a2" name="a2" required>       
     <button type="submit" class="btn btn-default">Search Query</button>
-
   </form>
-<br>
-
-<form class="form-inline" name="form3" action="/index" onsubmit="return form3f()" method="post">
-   
-  <div class="form-group">
-    <label  for="a1">Enter YEAR 1 :</label>
-    <input class="form-control" placeholder="Enter YEAR 1" type="text" id="a1" name="a1" required>
-  </div> 
-  <div class="form-group">
-    <label  for="a2">Enter YEAR 2:</label>
-    <input class="form-control" placeholder="Enter YEAR 2" type="text" id="a2" name="a2" required>
   </div>
-  <div class="form-group">
-    <label  for="a3">Enter Country Name:</label>
-    <input class="form-control" placeholder="Enter Country Name:" type="text" id="a3" name="a3" required>
-  </div>  
-    
-  <button type="submit" class="btn btn-default">Search Query</button>
-</form>
-<br>
-
-<form class="form-inline" name="getSearch" action="/index" onsubmit="return search_name()" method="GET">
+  </br>
+<!-- -------------------------------------search data in a file----------------------------------------------- -->
+  <div class="mb-10">
+    <h4>Search data in one file, input from other file : </h4>
+<form class="form-inline" name="getSearch_inp" action="/get_data" onsubmit="return search_name_inp()" method="GET">
+  <label  for="Search_a1">Enter name to search in document :</label>
+  <input placeholder="Enter Name" type="text" id="Search_a1" name="Name_search_a1" required>
   <button type="submit" class="btn btn-default col-lg-1">Get Search</button>
 </form>
-<br>
-
-    <div id="forChart">
-
-    </div>    
-
-    <!-- ********* Highlight***************** -->
-    <figure class="highcharts-figure">
-      <div id="highChart"></div>
-      <p class="highcharts-description">
-      </p>
-    </figure>
-
-    <table style="width:100%" class="table">
-      <tr>
-        <td>
-          <div id="myData">  </div>
-        </td>
-      </tr>
-    </table>
-
-    <div class="container">
-      <table style="width:100%" class="table table-bordered" id="showData">
-        
-      </table>
-    </div>
-  
   </div>
+</br>
+
+<!-- -------------------------------------search data in a file(no inputs)----------------------------------------------- -->
+<div class="mb-10">
+  <h4>Search data in one file, input from other file(No inputs) : </h4>
+<form class="form-inline" name="getSearch" action="/get_data" onsubmit="return search_name()" method="GET">
+<button type="submit" class="btn btn-default col-lg-1">Get Search</button>
+</form>
+</div>
+</br>
+
+<!-- -------------------------------------each word frequency in json(no inputs)----------------------------------------------- -->
+<div class="mb-10">
+  <h4>Each word in file frequency(No inputs) : </h4>
+<form class="form-inline" name="freqData" action="/get_data" onsubmit="return freq_file()" method="GET">
+<button type="submit" class="btn btn-default col-lg-1">Get Search</button>
+</form>
+</div>
+</br>
+
+<div id="output_div">  </div>
+<div id="myData">  </div>
+
 
 </body>
 </html>
