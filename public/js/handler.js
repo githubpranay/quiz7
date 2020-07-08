@@ -87,10 +87,8 @@ findInFiles.findSync(inputName, '.', 'PrideandPrejudice.txt')
 
 //code to count each word in a file
 Router.get("/most_frequent", (req,resp)=>{ 
-    var file = __dirname+'/../img/numberOfTimes.txt';
-    
     // read file from current directory
-    fs.readFile(file, 'utf8', function (err, data) {
+    fs.readFile(__dirname+'/../img/numberOfTimes.txt', 'utf8', function (err, data) {
       if (err) throw err;
       var wordsArray = splitByWords(data);
       var wordsMap = createWordMap(wordsArray);
@@ -99,7 +97,7 @@ Router.get("/most_frequent", (req,resp)=>{
       console.log(finalWordsArray);
       console.log('The word "' + finalWordsArray[0].name + '" appears the most in the file ' +
         finalWordsArray[0].total + ' times');
-        resp.send(finalWordsArray);
+        resp.json(finalWordsArray);
     });
     
     function splitByWords (text) {
