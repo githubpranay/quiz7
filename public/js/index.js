@@ -1,3 +1,27 @@
+function search_name() {
+  console.log("get_data");
+  // var a1 = document.forms["form1"]["a1"].value;
+  // var a2 = document.forms["form1"]["a2"].value;
+  // var a3 = document.forms["form1"]["a3"].value;
+    fetch('/get_data', 
+    {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+      //body: JSON.stringify({a1: a1})
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      console.log("in getIPF data = ",data)
+      getIPHtml(data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    }); 
+    return false;
+}
+
+
 //*******************Form1 Function ********************************
 function getIPf() {
   console.log("getIP");

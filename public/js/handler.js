@@ -1,6 +1,11 @@
 const express = require("express");
 const Router = express.Router();
 const conn = require("./connection");
+
+//added for file
+var fs = require('fs');
+var findInFiles = require('find-in-files');
+//added for file
 //const lodash = require("lodash");
 //random value generation
 //const random = require('random');
@@ -17,8 +22,6 @@ const superagent = require('superagent');
 
 Router.get("/getIP", (req,resp)=>{
     var data;
-    
-
     superagent.get('https://checkip.amazonaws.com').end((err, res) => {
         if (err) { 
             return console.log(err); 
@@ -27,10 +30,43 @@ Router.get("/getIP", (req,resp)=>{
         console.log("res.text = ",res.text);
         // console.log('res = ',res)
         resp.send(res);
-    });
-
-    
+    });   
 })
+
+
+///------------------------------------search wode in doc-------------------------------
+// https://www.npmjs.com/package/find-in-files
+// fs.readFile('/AAESH_CLASSES/SUMMER2020/AdvanceDB/Assignment_6/KOWSHIK_SOLUTION/public/img', 'utf8', function (err,data) {
+Router.get("/get_data", (req,resp)=>{ 
+var array = fs.readFileSync(__dirname+'/../img/names.txt').toString().split("\n");
+for(var i=0;i<array.length;i++)
+{
+var inputName = String(array[i].substring(0,array[i].length-1));
+//   findInFiles.find("[E,e]lizabeth", '.', '.txt$')
+findInFiles.find(inputName, '.', 'PrideandPrejudice.txt')
+  .then(function(results) {
+      for (var result in results) {
+          var res = results[result];
+          console.log('found "' + res.matches[0] + '" ' + res.count+ ' times in "' + result + '"');
+      }
+  });
+}
+});
+
+////code to read file in node js
+// fs.readFile(path.join(__dirname+'/../img/PrideandPrejudice.txt'), 'utf8', function (err,data) {  
+// if (err) {
+//     return console.log(err);
+//   }
+  //console.log(data);
+//  });
+
+/////code to read data into array
+// var array = fs.readFileSync(__dirname+'/../img/names.txt').toString().split("\n");
+// for(i in array) {
+//     console.log(array[i]);
+// }
+
 
 // ----------------------------------------------Form1-------------------------------------------------
 Router.post("/form1", (req,res)=>{
