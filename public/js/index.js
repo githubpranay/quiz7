@@ -1,31 +1,10 @@
 //photo appendData
 //normal form2html
 
-////////////////////get before and after word//////////////
-function getBeforeAfter() {
-  console.log("ProximityTwowords");
-   var a1 = document.forms["search_sen_form"]["getSenId"].value;
-  // var a3 = document.forms["form1"]["a3"].value;
-    fetch('/show_before_after', 
-    {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({Input1: a1})
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      form2html(data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    }); 
-    return false;
-}
 
 ////////////////////search word and get sentance//////////////
 function getSentanceForm() {
-  console.log("ProximityTwowords");
+  console.log("These are the Results");
    var a1 = document.forms["search_sen_form"]["getSenId"].value;
   // var a3 = document.forms["form1"]["a3"].value;
     fetch('/get_Sentance', 
@@ -47,7 +26,7 @@ function getSentanceForm() {
 }
 
 function enter_sentence_disp(backendData,a1) {
-  console.log("enter_sentence_disp");
+  console.log("entered_sentence_disp");
   var Inputarray = a1.toString().split(/\s+/);
   var mainContainer = document.getElementById("myData");
   var mainContainer1 = document.getElementById("myDataNo");
@@ -61,22 +40,103 @@ function enter_sentence_disp(backendData,a1) {
       if(Inputarray[i] == backendData[j].name)
       {
         found = true;
-        // console.log("correct",Inputarray[i], backendData[j].name);
         var div = document.createElement("div");
-        div.style.padding = '20px';
+        div.style.padding = '50px';
+        // div.style.t = "Not in English:" ;
         div.style.color = 'green';
-        div.innerHTML = backendData[j].name;
+        div.innerHTML = "English :"+ backendData[j].name;
         mainContainer.appendChild(div); 
+        console.log("correct",Inputarray[i], backendData[j].name);
+      } else {
+        if(backendData.length == j+1){
+          console.log("incorrect",j+1, backendData.length);
+          
+          var div1 = document.createElement("div");
+          // div.style.text = "Not in English:" ;
+          div1.style.padding = '30px';
+          div1.style.color = 'red';
+          div1.innerHTML = "Not in English text file:" +Inputarray[i];
+          mainContainer1.appendChild(div1); 
+          // mainContainer1.value = Inputarray[i];
+          document.forms["search_sen_form1"]["getSenId1"].value = Inputarray[i]
+        }
       }
-      if(!found && backendData.length == j+1){
-        // console.log("incorrect",Inputarray[i], backendData[j].name);
-        
-        var div1 = document.createElement("div");
-        div1.style.padding = '20px';
-        div.style.color = 'red';
-        div1.innerHTML =Inputarray[i].name;
-        mainContainer1.appendChild(div1); 
+      if(found) {
+        break;
       }
+      // console.log("found"+found)
+      
+    }
+  }
+
+}
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+function getSentanceForm1() {
+  console.log("These are the Results which are in RED");
+  var a2 = document.forms["search_sen_form1"]["getSenId1"].value;
+
+  // var a3 = document.forms["form1"]["a3"].value;
+    fetch('/get_Sentance1', 
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({Input2: a2})
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      
+      enter_sentence_disp1(data,a2);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    }); 
+    return false;
+}
+
+
+function enter_sentence_disp1(backendData,a2) {
+  console.log("entered_sentence_disp");
+  var Inputarray = a2.toString().split(/\s+/);
+  var mainContainer2 = document.getElementById("myData2");
+  var mainContainer3 = document.getElementById("myDataNo3");
+  var i, j;
+  for(i=0;i<Inputarray.length;i++)
+  {
+    var found = false;
+    for(j=0;j<backendData.length;j++)
+    {
+      // console.log("incorrect1",backendData.length, j+1);
+      if(Inputarray[i] == backendData[j].name)
+      {
+        found = true;
+        var div = document.createElement("div");
+        var arry = backendData[j].line[0].toString().split(/\s+/);
+        div.style.padding = '50px';
+        div.style.color = 'green';
+        div.innerHTML = "The spanish equivalent to english for word "+arry[0]+ " is " + arry[1];
+        mainContainer2.appendChild(div); 
+        console.log("correct",Inputarray[i], backendData);
+      } else {
+        if(backendData.length == j+1){
+          console.log("incorrect",j+1, backendData.length);
+          
+          var div1 = document.createElement("div");
+          // div.style.text = "Not in English:" ;
+          div1.style.padding = '50px';
+          div1.style.color = 'red';
+          div1.innerHTML = "Not in Spanish text file for " +Inputarray[i];
+          mainContainer3.appendChild(div1); 
+
+        }
+      }
+      if(found) {
+        break;
+      }
+      // console.log("found"+found)
+      
     }
   }
 
@@ -110,8 +170,7 @@ function ProximityTwowords() {
 function search_name_inp() {
   console.log("search_name_inp");
    var a1 = document.forms["getSearch_inp"]["Search_a1"].value;
-  // var a2 = document.forms["form1"]["a2"].value;
-  // var a3 = document.forms["form1"]["a3"].value;
+  
     fetch('/get_data_inp', 
     {
       method: 'POST',
@@ -130,83 +189,9 @@ function search_name_inp() {
 }
 
 
-////////////////////without input data in file search//////////////
-function search_name() {
-  console.log("search_name");
-  // var a1 = document.forms["form1"]["a1"].value;
-  // var a2 = document.forms["form1"]["a2"].value;
-  // var a3 = document.forms["form1"]["a3"].value;
-    fetch('/get_data', 
-    {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'},
-      //body: JSON.stringify({a1: a1})
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      form2html(data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    }); 
-    return false;
-}
-
-////////////////////without input each word frequency//////////////
-function freq_file() {
-  console.log("freq_file");
-  // var a1 = document.forms["form1"]["a1"].value;
-  // var a2 = document.forms["form1"]["a2"].value;
-  // var a3 = document.forms["form1"]["a3"].value;
-    fetch('/frequent', 
-    {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      //body: JSON.stringify({a1: a1})
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      form2html(data,headers);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    }); 
-    return false;
-}
-
-
 
 
   //*******************Form2 Function ********************************
-  function form2f() {
-    console.log("form2");
-    var a1 = document.forms["form2"]["a1"].value;
-    var a2 = document.forms["form2"]["a2"].value;
-    // var a3 = document.forms["form1"]["a3"].value;
-    if (a1 == "" || a2 == "") {
-      alert("Fields must be filled");
-      return false;
-    }
-    else{
-      fetch('/form2', 
-      {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({a1: a1,a2:a2})
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-        form2html(data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      }); 
-      return false;
-    }
-  }
 
   function form2html(data) {
     document.getElementById("myData").innerHTML = "";
@@ -220,21 +205,5 @@ function freq_file() {
         }
   }
 
-  //display pictures for names and creating div
-function appendData(data) {
-  document.getElementById("myData").innerHTML = "";
-  document.getElementById("output_div").innerHTML = "";
-  var mainContainer = document.getElementById("myData");
-  for (var i = 0; i < data.length; i++) {
-    var div = document.createElement("div");
-    div.style.padding = '20px';
-    var img = document.createElement('img'); 
-    var img_url = "/img/" + data[i].name+".jpg";
-    img.src =  img_url;
-    img.style.height = '100px';
-    img.style.width = '100px';
-         div.innerHTML =  "Name is " +data[i].name + "  "+"count is " +data[i].count + "  ";
-         div.appendChild(img);
-    mainContainer.appendChild(div);
-  }
-}
+
+  

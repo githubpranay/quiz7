@@ -13,36 +13,49 @@
     <h1>1001789904</h1>
     <h1>Pranay rao</h1>
   </div>
-   <!-- <img src="img/aws.jpg" style="width:100px;height:100px;"> -->
+   <img src="img/Bennet.jpg" style="width:100px;height:100px;">
   <div class="mb-10">
     <h4>Search word for Spell-check or word assistant: </h4>
-  <form class="form-inline" name="search_sen_form" action="/enterSentence" onsubmit="return getSentanceForm()" method="GET">
+  
+  <form class="form-inline" name="search_sen_form"  onsubmit="return getSentanceForm()" method="GET">
   <label  for="getSenId">Enter name:</label>
-  <input placeholder="Enter word" type="text" id="getSenId" name="getSenName" required>
+  <input placeholder="Enter word" type="text" id="getSenId" name="getSenName" value = "he and the como"  required>
+  <button type="submit" class="btn btn-default col-lg-1">Spell Checker</button>
+  </form>
+  </div
+  </br></br></br></br>
+
+  <div id="myData">  </div>
+  <div id="myDataNo">  </div>
+
+  <div class="mb-10">
+    <h4>Add name if shows in Red: </h4>
+  <form class="form-inline" name="search_sen_form1"  onsubmit="return getSentanceForm1()" method="GET" id="spanish_form">
+  <label  for="getSenId1">Enter name:</label>
+  <input placeholder="Enter word" type="text" id="getSenId1" name="getSenName1" required>
   <button type="submit" class="btn btn-default col-lg-1">Search</button>
   </form>
-  </div>
-  </br>
+  </div
 
-  <!-- <div class="mb-10">
-    <h4>Search data in one file, input from other file : </h4>
+ <div class="mb-10">
+    <!-- <h4>Search data in one file, input from other file : </h4>
 <form class="form-inline" name="getSearch" action="/get_data_input" onsubmit="return search_name_inp()" method="GET">
   <label  for="Search_a1">Enter name to search in document :</label>
   <input placeholder="Enter Name" type="text" id="Search_a1" name="Name_search_a1" required>
   <button type="submit" class="btn btn-default col-lg-1">Get Search</button>
-</form>
-  </div>
-</br>
+</form> -->
+  <!-- </div> -->
+<!-- </br>  -->
 
 <div class="mb-10">
-  <h4>Search data in one file, input from other file(No inputs) : </h4>
+  <!-- <h4>Search data in one file, input from other file(No inputs) : </h4>
 <form class="form-inline" name="getSearch" action="/get_data" onsubmit="return search_name()" method="GET">
 <button type="submit" class="btn btn-default col-lg-1">Get Search</button>
 </form>
 </div>
-</br>
+</br> -->
 
-<div class="mb-10">
+<!-- <div class="mb-10">
   <h4>Each word in file frequency(No inputs) : </h4>
 <form class="form-inline" name="freqData" action="/ " onsubmit="return freq_file()" method="POST">
 <button type="submit" class="btn btn-default col-lg-1">Get Search123</button>
@@ -59,11 +72,11 @@
   <button type="submit" class="btn btn-default">Search Query</button>
 </form>
 </div>
-</br>
+</br> -->
 
 
 
-<div class="mb-10">
+<!-- <div class="mb-10">
   <h4>Get data from Table : </h4>
 <form class="form-inline" name="form2" action="/index" onsubmit="return form2f()" method="post">
     <label  for="a1">Enter Year 1 :</label>
@@ -73,9 +86,10 @@
   <button type="submit" class="btn btn-default">Search Query</button>
 </form>
 </div>
-</br>
+</br> -->
 
-<!-- -------------------------------------get before and after word----------------------------------------------- -->
+
+<!---------------------------------------get before and after word------------------------------------------------->
 <!-- <div class="mb-10">
   <h4>Search for before and after word : </h4>
 <form class="form-inline" name="search_bef_aft" action="/get_data" onsubmit="return getBeforeAfter()" method="GET">
@@ -86,11 +100,9 @@
 </div>
 </br> --> 
 
-<div id="output_div">  </div>
-<!-- <div id="myData">  </div> -->
 
-<div id="myData">  </div>
-<div id="myDataNo">  </div>
+<div id="myData2">  </div>
+<div id="myDataNo3">  </div>
 
 
 </body>

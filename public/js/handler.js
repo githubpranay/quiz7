@@ -79,6 +79,36 @@ Router.post("/enterSentence", (req,resp)=>{
   }
   });
     
+  Router.post("/enterSentence1", (req,resp)=>{ 
+    var inp = req.body.Input;
+    var out =[];
+    var array = inp.toString().split(/\s+/);
+    console.log(array);
+    var a = 0;
+    for(var i=0;i<array.length;i++)
+    {
+        var inputName = String(array[i]);
+  
+    findInFiles.findSync(inputName, '.', 'SpanishEnglishFreq.txt')
+      .then(function(results) {
+        //   console.log("results = ", results)
+          for (var result in results) {
+              var new_obj ={};
+              var res = results[result];
+              new_obj["name"]=res.matches[0];
+              new_obj["count"]=res.count;
+              new_obj["result"]=result;
+              out.push(new_obj);
+              console.log('found "' + res.matches[0] + '" ' + res.count+ ' times in "' + result + '"');     
+          }
+          a++;
+          if(a==array.length){
+            resp.send(out);
+          }
+      });
+    }
+    });
+      
 
 
 ///------------------------------------search wode in doc(input)-------------------------------
@@ -439,6 +469,41 @@ console.log('stop words',array);
       });
     }
     });
+
+
+    Router.post("/get_Sentance1", (req, resp) => {
+      console.log("Here we are")
+      var name = req.body.Input2;
+      var array = fs.readFileSync(__dirname + '/../img/SpanishEnglishFreq.txt').toString().split(".");
+      var out =[];
+      var array = name.toString().split(/\s+/);
+      console.log(array);
+      var a = 0;
+      for(var i=0;i<array.length;i++)
+      {
+          var inputName = String(array[i]);
+        
+      findInFiles.findSync(inputName, '.', 'SpanishEnglishFreq.txt')
+        .then(function(results) {
+          console.log("results = ", results)
+            for (var result in results) {
+                var new_obj ={};
+                var res = results[result];
+                new_obj["name"]=res.matches[0];
+                new_obj["count"]=res.count;
+                new_obj["line"] = res.line;
+                new_obj["result"]=result;
+                out.push(new_obj);
+                console.log('found "' + res.matches[0] + '" ' + res.count+ ' times in "' + result + '"');  
+                console.log("lines="+res.line);   
+            }
+            a++;
+            if(a==array.length){
+              resp.send(out);
+            }
+        });
+      }
+      });
    
 
    
