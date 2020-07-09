@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Quiz 5</title>
+  <title>Quiz 6</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link type="text/css" rel="stylesheet" href="css/style.css">
@@ -10,28 +10,23 @@
 <body>
 
   <div class="header">
-    <h1>1001832769</h1>
-    <h1>Imtiyaz Aaresh Shaik</h1>
+    <h1>1001789904</h1>
+    <h1>Pranay rao</h1>
   </div>
-   <img src="img/aws.jpg" style="width:100px;height:100px;">
-
-
-<!-- ---------------------------------------previous---------------------------------------------------- -->
+   <!-- <img src="img/aws.jpg" style="width:100px;height:100px;"> -->
   <div class="mb-10">
-    <h4>Get data from Table : </h4>
-  <form class="form-inline" name="form2" action="/index" onsubmit="return form2f()" method="post">
-      <label  for="a1">Enter Year 1 :</label>
-      <input placeholder="Enter YEAR 1" type="text" id="a1" name="a1" required>
-      <label  for="a2">Enter Year 2:</label>
-      <input placeholder="Enter YEAR 2" type="text" id="a2" name="a2" required>       
-    <button type="submit" class="btn btn-default">Search Query</button>
+    <h4>Search word for Spell-check or word assistant: </h4>
+  <form class="form-inline" name="search_sen_form" action="/enterSentence" onsubmit="return getSentanceForm()" method="GET">
+  <label  for="getSenId">Enter name:</label>
+  <input placeholder="Enter word" type="text" id="getSenId" name="getSenName" required>
+  <button type="submit" class="btn btn-default col-lg-1">Search</button>
   </form>
   </div>
   </br>
-<!-- -------------------------------------search data in a file----------------------------------------------- -->
-  <div class="mb-10">
+
+  <!-- <div class="mb-10">
     <h4>Search data in one file, input from other file : </h4>
-<form class="form-inline" name="getSearch_inp" action="/get_data" onsubmit="return search_name_inp()" method="GET">
+<form class="form-inline" name="getSearch" action="/get_data_input" onsubmit="return search_name_inp()" method="GET">
   <label  for="Search_a1">Enter name to search in document :</label>
   <input placeholder="Enter Name" type="text" id="Search_a1" name="Name_search_a1" required>
   <button type="submit" class="btn btn-default col-lg-1">Get Search</button>
@@ -39,7 +34,6 @@
   </div>
 </br>
 
-<!-- -------------------------------------search data in a file(no inputs)----------------------------------------------- -->
 <div class="mb-10">
   <h4>Search data in one file, input from other file(No inputs) : </h4>
 <form class="form-inline" name="getSearch" action="/get_data" onsubmit="return search_name()" method="GET">
@@ -48,17 +42,55 @@
 </div>
 </br>
 
-<!-- -------------------------------------each word frequency in json(no inputs)----------------------------------------------- -->
 <div class="mb-10">
   <h4>Each word in file frequency(No inputs) : </h4>
-<form class="form-inline" name="freqData" action="/frequent" onsubmit="return freq_file()" method="POST">
+<form class="form-inline" name="freqData" action="/ " onsubmit="return freq_file()" method="POST">
 <button type="submit" class="btn btn-default col-lg-1">Get Search123</button>
 </form>
 </div>
 </br>
+<div class="mb-10">
+  <h4>Proximity between two words : </h4>
+<form class="form-inline" name="form3Proximity" action="/index" onsubmit="return ProximityTwowords()" method="post">
+    <label  for="name1_proxy">Enter Year 1 :</label>
+    <input placeholder="Name 1" type="text" id="name1_proxy" name="name1_proxy_name" required>
+    <label  for="name2_proxy">Enter Year 2:</label>
+    <input placeholder="Name 2" type="text" id="name2_proxy" name="name2_proxy_name" required>       
+  <button type="submit" class="btn btn-default">Search Query</button>
+</form>
+</div>
+</br>
+
+
+
+<div class="mb-10">
+  <h4>Get data from Table : </h4>
+<form class="form-inline" name="form2" action="/index" onsubmit="return form2f()" method="post">
+    <label  for="a1">Enter Year 1 :</label>
+    <input placeholder="Enter YEAR 1" type="text" id="a1" name="a1" required>
+    <label  for="a2">Enter Year 2:</label>
+    <input placeholder="Enter YEAR 2" type="text" id="a2" name="a2" required>       
+  <button type="submit" class="btn btn-default">Search Query</button>
+</form>
+</div>
+</br>
+
+<!-- -------------------------------------get before and after word----------------------------------------------- -->
+<!-- <div class="mb-10">
+  <h4>Search for before and after word : </h4>
+<form class="form-inline" name="search_bef_aft" action="/get_data" onsubmit="return getBeforeAfter()" method="GET">
+<label  for="getBFWord">Enter name:</label>
+<input placeholder="Enter Name" type="text" id="getBFWord" name="getBFWord_Name" required>
+<button type="submit" class="btn btn-default col-lg-1">Get Search</button>
+</form>
+</div>
+</br> --> 
 
 <div id="output_div">  </div>
+<!-- <div id="myData">  </div> -->
+
 <div id="myData">  </div>
+<div id="myDataNo">  </div>
 
 
 </body>

@@ -1,3 +1,111 @@
+//photo appendData
+//normal form2html
+
+////////////////////get before and after word//////////////
+function getBeforeAfter() {
+  console.log("ProximityTwowords");
+   var a1 = document.forms["search_sen_form"]["getSenId"].value;
+  // var a3 = document.forms["form1"]["a3"].value;
+    fetch('/show_before_after', 
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({Input1: a1})
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      form2html(data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    }); 
+    return false;
+}
+
+////////////////////search word and get sentance//////////////
+function getSentanceForm() {
+  console.log("ProximityTwowords");
+   var a1 = document.forms["search_sen_form"]["getSenId"].value;
+  // var a3 = document.forms["form1"]["a3"].value;
+    fetch('/get_Sentance', 
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({Input1: a1})
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      // form2html(data);
+      enter_sentence_disp(data,a1);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    }); 
+    return false;
+}
+
+function enter_sentence_disp(backendData,a1) {
+  console.log("enter_sentence_disp");
+  var Inputarray = a1.toString().split(/\s+/);
+  var mainContainer = document.getElementById("myData");
+  var mainContainer1 = document.getElementById("myDataNo");
+  var i, j;
+  for(i=0;i<Inputarray.length;i++)
+  {
+    var found = false;
+    for(j=0;j<backendData.length;j++)
+    {
+      // console.log("incorrect1",backendData.length, j+1);
+      if(Inputarray[i] == backendData[j].name)
+      {
+        found = true;
+        // console.log("correct",Inputarray[i], backendData[j].name);
+        var div = document.createElement("div");
+        div.style.padding = '20px';
+        div.style.color = 'green';
+        div.innerHTML = backendData[j].name;
+        mainContainer.appendChild(div); 
+      }
+      if(!found && backendData.length == j+1){
+        // console.log("incorrect",Inputarray[i], backendData[j].name);
+        
+        var div1 = document.createElement("div");
+        div1.style.padding = '20px';
+        div.style.color = 'red';
+        div1.innerHTML =Inputarray[i].name;
+        mainContainer1.appendChild(div1); 
+      }
+    }
+  }
+
+}
+
+
+////////////////////proximity between two words//////////////
+function ProximityTwowords() {
+  console.log("ProximityTwowords");
+   var a1 = document.forms["form3Proximity"]["name1_proxy"].value;
+   var a2 = document.forms["form3Proximity"]["name2_proxy"].value;
+  // var a3 = document.forms["form1"]["a3"].value;
+    fetch('/proximity_search', 
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({Input1: a1,Input2:a2})
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      form2html(data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    }); 
+    return false;
+}
+
 ////////////////////with input data in file search//////////////
 function search_name_inp() {
   console.log("search_name_inp");
@@ -13,15 +121,14 @@ function search_name_inp() {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
-      //var headers = ["name","count","result"];
-      //showTableData(data,headers);
-      appendData(data);
+      form2html(data);
     })
     .catch((error) => {
       console.error('Error:', error);
     }); 
     return false;
 }
+
 
 ////////////////////without input data in file search//////////////
 function search_name() {
@@ -38,9 +145,7 @@ function search_name() {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
-      //var headers = ["name","count","result"];
-      //showTableData(data,headers);
-      appendData(data);
+      form2html(data);
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -63,9 +168,7 @@ function freq_file() {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
-      var headers = ["name","total"];
-      showTableData(data,headers);
-      // appendData(data);
+      form2html(data,headers);
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -117,35 +220,6 @@ function freq_file() {
         }
   }
 
-  ///////////////////////////////////DISPLAY DATA IN TABLES/////////////////////////////////////
-function showTableData(data,headers) {
-  document.getElementById("myData").innerHTML = "";
-  document.getElementById("output_div").innerHTML = "";
-  var mainContainer = document.getElementById("output_div");
-  //added to display time taken
-  var div = document.createElement("div");
-  div.style.padding = '20px';
-  mainContainer.appendChild(div)
-  var outputHTML = "";
-  outputHTML += "<table>";
-  outputHTML += "<tr>";
-  for(var i=0;i<headers.length;i++){
-    outputHTML += "<th>" + headers[i]  + "</th>";
-  }
-  outputHTML += "</tr>";
-  for (var i = 0; i < data.length; i++) {
-          outputHTML += "<tr>";
-          for(var j=0;j<headers.length;j++){
-              outputHTML += "<td>" + data[i][headers[j]] +  "</td>";
-          }
-          outputHTML += "</tr>";
-      
-  }
-  outputHTML += "</table>";
-  // output our html
-  document.getElementById("output_div").innerHTML = outputHTML;
-  }
-
   //display pictures for names and creating div
 function appendData(data) {
   document.getElementById("myData").innerHTML = "";
@@ -159,7 +233,7 @@ function appendData(data) {
     img.src =  img_url;
     img.style.height = '100px';
     img.style.width = '100px';
-         div.innerHTML =  "Name is " +data[i].name + "  ";
+         div.innerHTML =  "Name is " +data[i].name + "  "+"count is " +data[i].count + "  ";
          div.appendChild(img);
     mainContainer.appendChild(div);
   }

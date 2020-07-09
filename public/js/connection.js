@@ -76,15 +76,15 @@ const config={
  authentication:{
  options:{
  userName:"admin",// update me
- password:"Qwerty12345",
+ password:"Qwerty123",
  port : "1433"
 // update me
 },
  type:"default"
 },
- server:"database-2.crlhvbkik9tw.us-east-2.rds.amazonaws.com",// update me
+ server:"database-2.cd9rlofafsjc.us-east-2.rds.amazonaws.com",// update me
  options:{
- database:"adbdb",//update me
+ database:"AWS",//update me
  encrypt:true,
  rowCollectionOnRequestCompletion:true,
  useColumnNames:true
