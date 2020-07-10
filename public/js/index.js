@@ -1,4 +1,6 @@
-//photo appendData
+// var btn = document.createElement("BUTTON");
+//   btn.innerHTML = "CLICK ME";
+//   document.body.appendChild(btn);//photo appendData
 //normal form2html
 
 
@@ -100,8 +102,12 @@ function getSentanceForm1() {
 function enter_sentence_disp1(backendData,a2) {
   console.log("entered_sentence_disp");
   var Inputarray = a2.toString().split(/\s+/);
+  var div3 = document.createElement("div");
+  var div4 = document.createElement("div");
   var mainContainer2 = document.getElementById("myData2");
   var mainContainer3 = document.getElementById("myDataNo3");
+  var mainContainer4 = document.getElementById("myDataNo4");
+  var mainContainer5 = document.getElementById("myDataNo5");
   var i, j;
   for(i=0;i<Inputarray.length;i++)
   {
@@ -113,11 +119,24 @@ function enter_sentence_disp1(backendData,a2) {
       {
         found = true;
         var div = document.createElement("div");
+        var div3 = document.createElement("div");
+        var div4 = document.createElement("div");
         var arry = backendData[j].line[0].toString().split(/\s+/);
+        var arry_1 = backendData[j].line[1].toString().split(/\s+/);
+        // var arry_2 = backendData[j].line[2].toString().split(/\s+/);
         div.style.padding = '50px';
         div.style.color = 'green';
+        div3.style.padding = '50px';
+        div3.style.color = 'green';
+        div4.style.padding = '50px';
+        div4.style.color = 'green';
+       
         div.innerHTML = "The spanish equivalent to english for word "+arry[0]+ " is " + arry[1];
+        div3.innerHTML = "The spanish equivalent to english for word "+arry_1[0]+ " is " + arry_1[1];
+        // div4.innerHTML = "The spanish equivalent to english for word "+arry_2[0]+ " is " + arry_2[1];
         mainContainer2.appendChild(div); 
+        mainContainer4.appendChild(div3)
+        mainContainer5.appendChild(div4)
         console.log("correct",Inputarray[i], backendData);
       } else {
         if(backendData.length == j+1){
@@ -141,6 +160,8 @@ function enter_sentence_disp1(backendData,a2) {
   }
 
 }
+
+
 
 
 ////////////////////proximity between two words//////////////

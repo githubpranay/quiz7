@@ -21,6 +21,20 @@
   <label  for="getSenId">Enter name:</label>
   <input placeholder="Enter word" type="text" id="getSenId" name="getSenName" value = "he and the como"  required>
   <button type="submit" class="btn btn-default col-lg-1">Spell Checker</button>
+  <button onclick="myFunction()">Try it</button>
+  <script>
+    function myFunction() {
+      var x = document.createElement("INPUT");
+      x.setAttribute("type", "text");
+      x.setAttribute("id", "getSenId");
+      x.setAttribute("name", "getSenName");
+      x.setAttribute("value", "getSenName[0]");
+      var button = document.createElement('BUTTON'); 
+      var text = document.createTextNode("Button");
+      button.appendChild(text); 
+      document.body.appendChild(x);
+    }
+    </script>
   </form>
   </div
   </br></br></br></br>
@@ -102,7 +116,13 @@
 
 
 <div id="myData2">  </div>
+
+<div id="myDataNo5">  </div>
+<div id="myDataNo4">  </div>
+
 <div id="myDataNo3">  </div>
+
+
 
 
 </body>
